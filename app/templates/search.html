@@ -3,33 +3,76 @@
         <link rel="stylesheet" href="/static/bootstrap.min.css">
         <link rel="stylesheet" href="/static/main.css">
     </head>
+
+   <!-- Akshay's style code-->
+    <style>
+      .header {
+        padding: 30px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+        font-size: 25px;
+        position: absolute;
+        width: 1200px;
+        top: 20px;
+      }
+    </style>
+
     <body>
-        <div class="topcorner">
-            <p>Project Name: {{ "C'est Le Vin" }}</p>
-            <p>Student Names: ({{ "Collin Farquhar: cjf235, Akshay Agarwal: aa2657, Sreenath GV: sg2373,
-	                          Hanjun Jiang: hj447"}})</p>
+        <div class="header">
+          <h1>C'est le vin</h1>
         </div>
+
         <form class="form-inline global-search">
-            <h1 style="font-size: 55px; font-family:Futura; color: #4285F4">
-                C
-                <font color=#EA4335>S</font>
-                <font color=#FBBC05>4</font>
-                3
-                <font color=#34A853>0</font>
-                <font color=#EA4335>0</font>
-            </h1>
-            
+          <section class="colors">
+            <h3>Choose your wine type:</h3>
             <br><br>
-            
-            <div class="form-group">
-                <input id="input" type="text" name="search" class="form-control" placeholder="Your Input">
-            </div>
-            <button type="submit" class="btn btn-info"> Go! </button>
+            <input type="checkbox" id="Red" name="color" value="Red">
+            <label for="Red">Red</label>
+            <input type="checkbox" id="White" name="color" value="White">
+            <label for="White">White</label>
+            <input type="checkbox" id="Rose" name="color" value="Rose">
+            <label for="Rose">Rose</label>
+          </section>
+
+          <br><br>
+
+          <section class="flavors">
+            <h3>Choose your flavors:</h3>
+            <br><br>
+            <input type="checkbox" id="Dry" name="flavor" value="Dry">
+            <label for="Dry">Dry</label>
+            <input type="checkbox" id="Sweet" name="flavor" value="Sweet">
+            <label for="Sweet">Sweet</label>
+            <input type="checkbox" id="Fruity" name="flavor" value="Fruity">
+            <label for="Fruity">Fruity</label>
+            <input type="checkbox" id="Earthy" name="flavor" value="Earthy">
+            <label for="Earthy">Earthy</label>
+            <input type="checkbox" id="Spicy" name="flavor" value="Spicy">
+            <label for="Spicy">Spicy</label>
+          </section>
+
+          <br><br><br>
+
+          <section class="price range">
+      			Enter the Min Price Range:<br>
+      			<input type="number" name="MinPrice" class="form-control" placeholder="Enter a number (optional)">
+      			<br><br>
+      			Enter the Max Price Range:<br>
+      			<input type="number" name="MaxPrice" class="form-control" placeholder="Enter a number (optional)">
+          </section>
+          <br><br><br>
+
+          <section class="submission">
+            <button type="submit" class="btn btn-info"> Submit! </button>
+          </section>
         </form>
+
+
         <form class="form-inline global-search">
         {% if data %}
             <h1>{{output_message}}</h1>
-            {% for d in data %}  
+            {% for d in data %}
                 <br>
                 <p>{{d}}</p>
             {% endfor %}
