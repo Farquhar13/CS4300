@@ -28,9 +28,9 @@ def search():
 	else:
 
 	## comment to update code
-		master_data = pd.read_pickle("~/app/data/master_data_lean.pkl")
-		vin_tfidf = np.load("~/app/data/vin_tfidf.npy").item()
-		word_to_index = np.load("~/app/data/word_to_index.npy").item()
+		master_data = pd.read_pickle("app/data/master_data_lean.pkl")
+		vin_tfidf = np.load("app/data/vin_tfidf.npy").item()
+		word_to_index = np.load("app/data/word_to_index.npy").item()
 
 
 		def query_vec(s):
