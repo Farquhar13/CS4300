@@ -28,8 +28,8 @@ def search():
 	else:
 
 	## comment to update code
-		wines = pd.read_csv("/app/app/datawinemag-data-130k-v2.csv")
-		wines_color = pd.read_csv("/app/app/data/Wine_color.csv")
+		wines = pd.read_csv("~/app/app/data/winemag-data-130k-v2.csv")
+		wines_color = pd.read_csv("~/app/app/data/Wine_color.csv")
 		wines_color.rename(columns={'Variety':'variety'}, inplace=True)
 		master_data = pd.merge(wines, wines_color, on='variety', how='left')
 		master_data = master_data.groupby(master_data.title).first()
