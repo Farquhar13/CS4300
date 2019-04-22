@@ -11,14 +11,12 @@ from sklearn.preprocessing import normalize
 from nltk import word_tokenize
 from nltk.util import ngrams
 import re
-from memory_profiler import profile
 
 project_name = "S"
 net_id = "...."
 
 
 @irsystem.route('/', methods=['GET'])
-@profile
 def search():
 	#query = request.args.get('search')
 	WineType = request.args.get('flavor')
