@@ -12,6 +12,14 @@ from nltk import word_tokenize
 from nltk.util import ngrams
 import re
 
+# relative path stuff
+import os
+dirname = os.path.dirname(__file__)
+data_path = os.path.join(dirname, '..', '..', 'data', 'master_data_lean.pkl')
+tfidf_path = os.path.join(dirname, '..', '..', 'data', 'vin_tfidf.npy')
+word_to_index_path = os.path.join(dirname, '..', '..', 'data', 'word_to_index.npy')
+
+
 project_name = "S"
 net_id = "...."
 
@@ -38,9 +46,9 @@ def search():
 		print(MaxPrice)
 
 	## comment to update code
-		master_data = pd.read_pickle("/app/app/data/master_data_lean.pkl")
-		vin_tfidf = np.load("/app/app/data/vin_tfidf.npy").item()
-		word_to_index = np.load("/app/app/data/word_to_index.npy").item()
+		master_data = pd.read_pickle(data_path)
+		vin_tfidf = np.load(tfidf_path).item()
+		word_to_index = np.load(word_to_index_path).item()
 
 
 		def query_vec(s):
