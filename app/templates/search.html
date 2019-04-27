@@ -4,32 +4,18 @@
         <link rel="stylesheet" href="/static/main.css">
     </head>
 
-   <!-- Akshay's style code-->
+   <!-- Akshay's style code c40051 ab004d-->
     <style>
       .header {
         padding: 30px;
         text-align: center;
-        background: #1abc9c;
+        background: #ab004d;
         color: white;
         font-size: 25px;
         position: absolute;
         width: 100%;
         top: 20px;
       }
-	  
-	table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 5px;
-  text-align: left;    
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
     </style>
 
     <body>
@@ -41,7 +27,7 @@ tr:nth-child(even) {
           <section class="colors">
             <h3>Choose your wine type:</h3>
             <br><br>
-			
+
 			<input type="checkbox" id="Red" name="color" value="Red">
             <label for="Red">Red</label>
             <input type="checkbox" id="White" name="color" value="White">
@@ -66,92 +52,105 @@ tr:nth-child(even) {
             <label for="Spicy">Spicy</label>
           </section>
 
-          <br><br><br>
-				Enter Other Flavors(optional):<br> 
-				<input name="Flavor_1" list="flavours" class="form-control" style="width:200px;" />
-				<br>
-				<datalist id="flavours">
-				<option value="Dry" />
-				<option value="cherry" />
-				<option value="oak" />
-				<option value="spice" />
-				<option value="berry" />
-				<option value="plum" />
-				<option value="apple" />
-				<option value="citrus" />
-				<option value="vanilla" />
-				<option value="peach" />
-				<option value="chocolate" />
-				<option value="raspberry" />
-				<option value="ripe" />
-				<option value="oak" />
-				<option value="fresh" />
-				<option value="rich" />
-				<option value="dry" />
-				<option value="soft" />
-				<option value="apple" />
-				<option value="fruits" />
-				<option value="sweet" />
-				<option value="crisp" />
-				<option value="blackberry" />
-				<option value="light" />
-				<option value="texture" />
-				<option value="dark" />
-				<option value="citrus" />
-				<option value="pepper" />
-				<option value="lemon" />
-				<option value="fruity" />
-				<option value="balanced" />
-				<option value="pear" />
-				<option value="smooth" />
-				<option value="herb" />
-				<option value="tannic" />
-				<option value="lime" />
-				<option value="orange" />
-				<option value="creamy" />
-				<option value="toast" />
-				<option value="leather" />
-				<option value="tobacco" />
-				<option value="richness" />
-				<option value="freshness" />
-				<option value="complex" />
-				<option value="young" />
-				<option value="aging" />
-				<option value="smoky" />
-				<option value="lively" />
-				<option value="melon" />
-				<option value="strawberry" />
-				<option value="coffee" />
-				<option value="grapefruit" />
-				<option value="cola" />
-				<option value="honey" />
-				<option value="pineapple" />
-				<option value="tropical" />
-				<option value="floral" />
-				<option value="apricot" />
-				<option value="cinnamon" />
-				<option value="refreshing" />
-				<option value="bitter" />
-				<option value="zest" />
-				<option value="cranberry" />
-				<option value="blueberry" />
-				<option value="grapes" />
-				<option value="rose" />
-				<option value="dusty" />
-				<option value="exotic" />
-				<option value="velvety" />
-				</datalist>
-         <br>	 
-          <section class="price range">
-      			Enter the Min Price Range:<br>
-      			<input type="number" name="MinPrice" style="width: 200px; class="form-control" placeholder="Enter a number (optional)">
-      			<br><br>
-      			Enter the Max Price Range:<br>
-      			<input type="number" name="MaxPrice" style="width: 200px; class="form-control" placeholder="Enter a number (optional)">
+          <br><br>
+          <section class="Flavor1">
+    				<label for="Flavor_1">Enter other flavors</label>
+            <br>
+    				<input name="Flavor_1" list="flavours" class="form-control" style="width:200px;" placeholder="(optional)">
+    				<br>
+    				<datalist id="flavours">
+      				<option value="Dry" />
+      				<option value="cherry" />
+      				<option value="oak" />
+      				<option value="spice" />
+      				<option value="berry" />
+      				<option value="plum" />
+      				<option value="apple" />
+      				<option value="citrus" />
+      				<option value="vanilla" />
+      				<option value="peach" />
+      				<option value="chocolate" />
+      				<option value="raspberry" />
+      				<option value="ripe" />
+      				<option value="oak" />
+      				<option value="fresh" />
+      				<option value="rich" />
+      				<option value="dry" />
+      				<option value="soft" />
+      				<option value="apple" />
+      				<option value="fruits" />
+      				<option value="sweet" />
+      				<option value="crisp" />
+      				<option value="blackberry" />
+      				<option value="light" />
+      				<option value="texture" />
+      				<option value="dark" />
+      				<option value="citrus" />
+      				<option value="pepper" />
+      				<option value="lemon" />
+      				<option value="fruity" />
+      				<option value="balanced" />
+      				<option value="pear" />
+      				<option value="smooth" />
+      				<option value="herb" />
+      				<option value="tannic" />
+      				<option value="lime" />
+      				<option value="orange" />
+      				<option value="creamy" />
+      				<option value="toast" />
+      				<option value="leather" />
+      				<option value="tobacco" />
+      				<option value="richness" />
+      				<option value="freshness" />
+      				<option value="complex" />
+      				<option value="young" />
+      				<option value="aging" />
+      				<option value="smoky" />
+      				<option value="lively" />
+      				<option value="melon" />
+      				<option value="strawberry" />
+      				<option value="coffee" />
+      				<option value="grapefruit" />
+      				<option value="cola" />
+      				<option value="honey" />
+      				<option value="pineapple" />
+      				<option value="tropical" />
+      				<option value="floral" />
+      				<option value="apricot" />
+      				<option value="cinnamon" />
+      				<option value="refreshing" />
+      				<option value="bitter" />
+      				<option value="zest" />
+      				<option value="cranberry" />
+      				<option value="blueberry" />
+      				<option value="grapes" />
+      				<option value="rose" />
+      				<option value="dusty" />
+      				<option value="exotic" />
+      				<option value="velvety" />
+    				</datalist>
           </section>
-		 <br></br> 
-		 
-		
+
+          <br>
+          <section class="sim variety">
+            <h3>Choose a wine variety you enjoy:</h3>
+            <br><br>
+            <input id="variety" name="variety" type="text" placeholder="e.g. Merlot (optional)">
+          </section>
+
+          <br></br>
+          <section class="rating">
+            <label for="rating">Enter the Min Rating (0-100):</label>
+            <input type="number" name="rating" id="rating" min="0" max="100" placeholder="(optional)">
+          </section>
+
+          <br><br>
+          <section class="price range">
+        		<label for="MaxPrice">Enter the Max Price:</label>
+        		<input type="number" name="MaxPrice" min="5" placeholder="(optional)">
+          </section>
+
+  		    <br></br>
           <section class="submission">
             <button type="submit" class="btn btn-info"> Submit! </button>
           </section>
@@ -161,10 +160,10 @@ tr:nth-child(even) {
         <form class="form-inline global-search">
         {% if data %}
             <h1>{{output_message}}</h1>
-				{% for d in data %}  
+				{% for d in data %}
                 <br>
                 <p>{{d}}</p>
-            {% endfor %} 
+            {% endfor %}
         {% endif %}
         </form>
 		 <div class="footer">
