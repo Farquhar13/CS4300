@@ -144,14 +144,18 @@
 
 
         <form class="form-inline global-search">
-        {% if data %}
-            <h1>{{output_message}}</h1>
-				{% for d in data %}
-                <br>
-                <p>{{d}}</p>
-            {% endfor %}
-        {% endif %}
+          {% if data %}
+              <h2>{{output_message}}</h2> <br>
+              {% for d in data %} <br>
+  				    <div class="hover_img">
+                  <hr align = "center">{{d[0]}}</hr>
+                <hr align = "center">{{d[1]}}</hr>
+                <hr align = "right">{{d[2]}}</hr>
+  				    </div>
+              {% endfor %}
+          {% endif %}
         </form>
+
 		 <div class="footer">
             <p>&copy; 2019 | cjf235,aa2657,sg2373,hj447</p>
         </div>
