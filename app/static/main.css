@@ -11,7 +11,7 @@ text-align:center;
 }
 
 body {
-padding-top: 12%;
+padding-top: 8%;
 padding-bottom: 15px;
 }
 
@@ -47,6 +47,10 @@ border: none
 }
 
 /* Table */
+
+.mininput {
+  width: 100px;
+}
 
 table {
   height: 10%;

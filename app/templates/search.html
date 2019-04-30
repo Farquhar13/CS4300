@@ -1,7 +1,7 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/static/bootstrap.min.css">
-        <link rel="stylesheet" href="/static/main.css">
+      <link rel="stylesheet" href="/static/main.css">
+      <link rel="stylesheet" href="/static/bootstrap.min.css">
     </head>
 
     <body>
@@ -9,25 +9,21 @@
           <h1>C'est le vin</h1>
         </div>
 
-        {% if flag3 %}
-    			<h3 align = "center">Please enter a flavor or variety</h3>
-    		{% endif %}
-
         <form class="form-inline global-search">
           <section class="colors">
-            <h3>Choose your wine type:</h3>
+            <h3>Choose your wine color:</h3>
             <br><br>
-            <input type="checkbox" id="Red" name="color" value="Red">
+            <input type="radio" id="Red" name="color" value="Red">
             <label for="Red">Red</label>
-            <input type="checkbox" id="White" name="color" value="White">
+            <input type="radio" id="White" name="color" value="White">
             <label for="White">White</label>
-            <input type="checkbox" id="Rose" name="color" value="Rose">
-            <label for="Rose">Rose</label>
+            <input type="radio" id="Rose" name="color" value="Rose">
+            <label for="Rose">Rosé</label>
           </section>
 
           <br><br>
-          <sectiokbdn class="flavors">
-            <h3>Choose your flavors:</h3>
+          <section class="flavors">
+            <h3>Add your flavors:</h3>
             <br><br>
             <input type="checkbox" id="Dry" name="flavor[]" value="dry">
             <label for="Dry">Dry</label>
@@ -43,10 +39,10 @@
 
           <br><br>
           <section class="Flavor1">
-    				<label for="Flavor_1">Enter other flavors</label>
+    				<label for="Flavor_1">other flavors</label>
             <br>
     				<input name="Flavor_1" list="flavours" class="form-control" style="width:200px;" placeholder="(optional)">
-    				<br>
+            <br>
     				<datalist id="flavours">
       				<option value="Dry" />
       				<option value="cherry" />
@@ -121,183 +117,181 @@
           </section>
 
           <br>
-          <section class="sim variety">
-            <h3>Choose a wine variety you enjoy:</h3>
+          <section class="variety">
+            <h3>Enter a wine variety you enjoy:</h3>
             <br><br>
-            <input id="variety" name="variety" list ="varieties" type="TEXTAREA" placeholder="e.g. Merlot (optional)">
+            <input text-align: center; name="variety" list ="varieties" type="TEXTAREA" placeholder="e.g. Merlot (optional)">
+            <br>
+      			<datalist id="varieties">
+      				<option value="Pinot Noir" />
+      				<option value="Chardonnay" />
+      				<option value="Cabernet Sauvignon" />
+      				<option value="Red Blend" />
+      				<option value="Bordeaux-style Red Blend" />
+      				<option value="Riesling" />
+      				<option value="Sauvignon Blanc" />
+      				<option value="Syrah" />
+      				<option value="Merlot" />
+      				<option value="Nebbiolo" />
+      				<option value="Zinfandel" />
+      				<option value="Sangiovese" />
+      				<option value="Malbec" />
+      				<option value="Portuguese Red" />
+      				<option value="White Blend" />
+      				<option value="Sparkling Blend" />
+      				<option value="Tempranillo" />
+      				<option value="Rhône-style Red Blend" />
+      				<option value="Pinot Gris" />
+      				<option value="Champagne Blend" />
+      				<option value="Cabernet Franc" />
+      				<option value="Grüner Veltliner" />
+      				<option value="Portuguese White" />
+      				<option value="Bordeaux-style White Blend" />
+      				<option value="Pinot Grigio" />
+      				<option value="Gamay" />
+      				<option value="Gewürztraminer" />
+      				<option value="Viognier" />
+      				<option value="Shiraz" />
+      				<option value="Petite Sirah" />
+      				<option value="Sangiovese Grosso" />
+      				<option value="Barbera" />
+      				<option value="Glera" />
+      				<option value="Port" />
+      				<option value="Grenache" />
+      				<option value="Corvina, Rondinella, Molinara" />
+      				<option value="Chenin Blanc" />
+      				<option value="Tempranillo Blend" />
+      				<option value="Carmenère" />
+      				<option value="Albariño" />
+      				<option value="Pinot Blanc" />
+      				<option value="Rhône-style White Blend" />
+      				<option value="Nero d'Avola" />
+      				<option value="Aglianico" />
+      				<option value="Moscato" />
+      				<option value="Garnacha" />
+      				<option value="Sauvignon" />
+      				<option value="Verdejo" />
+      				<option value="Melon" />
+      				<option value="Garganega" />
+      				<option value="Petit Verdot" />
+      				<option value="Meritage" />
+      				<option value="Torrontés" />
+      				<option value="Prosecco" />
+      				<option value="Blaufränkisch" />
+      				<option value="Vermentino" />
+      				<option value="Mourvèdre" />
+      				<option value="Primitivo" />
+      				<option value="Montepulciano" />
+      				<option value="Zweigelt" />
+      				<option value="Touriga Nacional" />
+      				<option value="Pinot Nero" />
+      				<option value="G-S-M" />
+      				<option value="Dolcetto" />
+      				<option value="Tannat" />
+      				<option value="Mencía" />
+      				<option value="Roussanne" />
+      				<option value="Tinta de Toro" />
+      				<option value="Verdicchio" />
+      				<option value="Turbiana" />
+      				<option value="Pinot Bianco" />
+      				<option value="Fiano" />
+      				<option value="Monastrell" />
+      				<option value="Vernaccia" />
+      				<option value="Grillo" />
+      				<option value="Pinotage" />
+      				<option value="Alvarinho" />
+      				<option value="Sémillon" />
+      				<option value="Muscat" />
+      				<option value="Grenache Blanc" />
+      				<option value="Friulano" />
+      				<option value="Greco" />
+      				<option value="Cabernet Sauvignon-Merlot" />
+      				<option value="Nerello Mascalese" />
+      				<option value="Viura" />
+      				<option value="Bonarda" />
+      				<option value="Sagrantino" />
+      				<option value="Rosato" />
+      				<option value="Cabernet Sauvignon-Syrah" />
+      				<option value="Sherry" />
+      				<option value="Tinto Fino" />
+      				<option value="Malbec-Merlot" />
+      				<option value="St. Laurent" />
+      				<option value="Falanghina" />
+      				<option value="Ribolla Gialla" />
+      				<option value="Arneis" />
+      				<option value="Godello" />
+      				<option value="Lagrein" />
+      				<option value="Cabernet Blend" />
+      			</datalist>
+          </section>
 
-          <!-- add top-->
           <br>
-    			<datalist id="varieties">
-    				<option value="Pinot Noir" />
-    				<option value="Chardonnay" />
-    				<option value="Cabernet Sauvignon" />
-    				<option value="Red Blend" />
-    				<option value="Bordeaux-style Red Blend" />
-    				<option value="Riesling" />
-    				<option value="Sauvignon Blanc" />
-    				<option value="Syrah" />
-    				<option value="Merlot" />
-    				<option value="Nebbiolo" />
-    				<option value="Zinfandel" />
-    				<option value="Sangiovese" />
-    				<option value="Malbec" />
-    				<option value="Portuguese Red" />
-    				<option value="White Blend" />
-    				<option value="Sparkling Blend" />
-    				<option value="Tempranillo" />
-    				<option value="Rhône-style Red Blend" />
-    				<option value="Pinot Gris" />
-    				<option value="Champagne Blend" />
-    				<option value="Cabernet Franc" />
-    				<option value="Grüner Veltliner" />
-    				<option value="Portuguese White" />
-    				<option value="Bordeaux-style White Blend" />
-    				<option value="Pinot Grigio" />
-    				<option value="Gamay" />
-    				<option value="Gewürztraminer" />
-    				<option value="Viognier" />
-    				<option value="Shiraz" />
-    				<option value="Petite Sirah" />
-    				<option value="Sangiovese Grosso" />
-    				<option value="Barbera" />
-    				<option value="Glera" />
-    				<option value="Port" />
-    				<option value="Grenache" />
-    				<option value="Corvina, Rondinella, Molinara" />
-    				<option value="Chenin Blanc" />
-    				<option value="Tempranillo Blend" />
-    				<option value="Carmenère" />
-    				<option value="Albariño" />
-    				<option value="Pinot Blanc" />
-    				<option value="Rhône-style White Blend" />
-    				<option value="Nero d'Avola" />
-    				<option value="Aglianico" />
-    				<option value="Moscato" />
-    				<option value="Garnacha" />
-    				<option value="Sauvignon" />
-    				<option value="Verdejo" />
-    				<option value="Melon" />
-    				<option value="Garganega" />
-    				<option value="Petit Verdot" />
-    				<option value="Meritage" />
-    				<option value="Torrontés" />
-    				<option value="Prosecco" />
-    				<option value="Blaufränkisch" />
-    				<option value="Vermentino" />
-    				<option value="Mourvèdre" />
-    				<option value="Primitivo" />
-    				<option value="Montepulciano" />
-    				<option value="Zweigelt" />
-    				<option value="Touriga Nacional" />
-    				<option value="Pinot Nero" />
-    				<option value="G-S-M" />
-    				<option value="Dolcetto" />
-    				<option value="Tannat" />
-    				<option value="Mencía" />
-    				<option value="Roussanne" />
-    				<option value="Tinta de Toro" />
-    				<option value="Verdicchio" />
-    				<option value="Turbiana" />
-    				<option value="Pinot Bianco" />
-    				<option value="Fiano" />
-    				<option value="Monastrell" />
-    				<option value="Vernaccia" />
-    				<option value="Grillo" />
-    				<option value="Pinotage" />
-    				<option value="Alvarinho" />
-    				<option value="Sémillon" />
-    				<option value="Muscat" />
-    				<option value="Grenache Blanc" />
-    				<option value="Friulano" />
-    				<option value="Greco" />
-    				<option value="Cabernet Sauvignon-Merlot" />
-    				<option value="Nerello Mascalese" />
-    				<option value="Viura" />
-    				<option value="Bonarda" />
-    				<option value="Sagrantino" />
-    				<option value="Rosato" />
-    				<option value="Cabernet Sauvignon-Syrah" />
-    				<option value="Sherry" />
-    				<option value="Tinto Fino" />
-    				<option value="Malbec-Merlot" />
-    				<option value="St. Laurent" />
-    				<option value="Falanghina" />
-    				<option value="Ribolla Gialla" />
-    				<option value="Arneis" />
-    				<option value="Godello" />
-    				<option value="Lagrein" />
-    				<option value="Cabernet Blend" />
-    				</datalist>
-    				</section>
-
-    		  	<h3>Choose filter:</h3>
-
     			<input type="checkbox" id="varietyfilter" name="varietyfilter" value="1">
-                <label for="Red">Filter</label>
+          <label class ="variety" for="varietyfilter">Only give me results for this wine variety</label>
 
-    			<br>
-    			<h3>Choose Country:</h3>
-                <br>
-    			<input name="Country" list ="countries" class="form-control" style="width:200px;" placeholder="(optional)">
-              <br>
-    		  <datalist id="countries">
-    				<option value="US" />
-    				<option value="France" />
-    				<option value="Italy" />
-    				<option value="Spain" />
-    				<option value="Portugal" />
-    				<option value="Chile" />
-    				<option value="Argentina" />
-    				<option value="Austria" />
-    				<option value="Australia" />
-    				<option value="Germany" />
-    				<option value="New Zealand" />
-    				<option value="South Africa" />
-    				<option value="Israel" />
-    				<option value="Greece" />
-    				<option value="Canada" />
-    				<option value="Hungary" />
-    				<option value="Bulgaria" />
-    				<option value="Romania" />
-    				<option value="Uruguay" />
-    				<option value="Turkey" />
-    				<option value="Slovenia" />
-    				<option value="Georgia" />
-    				<option value="England" />
-    				<option value="Croatia" />
-    				<option value="Mexico" />
-    				<option value="Moldova" />
-    				<option value="Brazil" />
-    				<option value="Lebanon" />
-    				<option value="Morocco" />
-    				<option value="Peru" />
-    				<option value="Ukraine" />
-    				<option value="Serbia" />
-    				<option value="Macedonia" />
-    				<option value="Czech Republic" />
-    				<option value="Cyprus" />
-    				<option value="India" />
-    				<option value="Switzerland" />
-    				<option value="Luxembourg" />
-    				<option value="Bosnia and Herzegovina" />
-    				<option value="Armenia" />
-    				<option value="China" />
-    				<option value="Egypt" />
-    				<option value="Slovakia" />
 
-    				</datalist>
-          <!-- add bottom-->
+    			<br><br>
+          <section class="country">
+      			<h3>Choose a wine region (by country)</h3>
+            <br><br>
+      			<input name="Country" list ="countries" class="form-control" style="width:200px;" placeholder="(optional)">
+            <br>
+      		  <datalist id="countries">
+      				<option value="US" />
+      				<option value="France" />
+      				<option value="Italy" />
+      				<option value="Spain" />
+      				<option value="Portugal" />
+      				<option value="Chile" />
+      				<option value="Argentina" />
+      				<option value="Austria" />
+      				<option value="Australia" />
+      				<option value="Germany" />
+      				<option value="New Zealand" />
+      				<option value="South Africa" />
+      				<option value="Israel" />
+      				<option value="Greece" />
+      				<option value="Canada" />
+      				<option value="Hungary" />
+      				<option value="Bulgaria" />
+      				<option value="Romania" />
+      				<option value="Uruguay" />
+      				<option value="Turkey" />
+      				<option value="Slovenia" />
+      				<option value="Georgia" />
+      				<option value="England" />
+      				<option value="Croatia" />
+      				<option value="Mexico" />
+      				<option value="Moldova" />
+      				<option value="Brazil" />
+      				<option value="Lebanon" />
+      				<option value="Morocco" />
+      				<option value="Peru" />
+      				<option value="Ukraine" />
+      				<option value="Serbia" />
+      				<option value="Macedonia" />
+      				<option value="Czech Republic" />
+      				<option value="Cyprus" />
+      				<option value="India" />
+      				<option value="Switzerland" />
+      				<option value="Luxembourg" />
+      				<option value="Bosnia and Herzegovina" />
+      				<option value="Armenia" />
+      				<option value="China" />
+      				<option value="Egypt" />
+      				<option value="Slovakia" />
+      			</datalist>
+          </section>
 
           <br></br>
           <section class="rating">
-            <label for="rating">Enter the Min Rating (0-100):</label>
-            <input type="number" name="rating" id="rating" min="0" max="100" placeholder="(optional)">
+            <label for="rating">Enter a Min Rating (0-100):</label>
+            <input class="mininput"type="number" name="rating" id="rating" min="0" max="100" placeholder="(optional)">
           </section>
 
           <br><br>
           <section class="price range">
-        		<label for="MaxPrice">Enter the Max Price:</label>
+        		<label for="MaxPrice">Enter a Max Price:</label>
         		<input type="number" name="MaxPrice" min="5" placeholder="(optional)">
           </section>
 
@@ -314,28 +308,31 @@
         {% if data %}
         <h2 style="text-align:center;">{{output_message}}</h2> <br>
           <div class="table_style">
-            <table>
+            <table class="head">
               <thead>
                 <tr>
-                  <th>Similarity Score</th>
+                  <th>Sim Score</th>
                   <th>Wine Title</th>
-                  <th>Price</th>
-                  <th>Description</th>
+                  <th>Country</th>
                   <th>Critic Rating</th>
+                  <th>Price</th>
                 </tr>
               </thead>
             </table>
           </div>
           <div class="table_style">
             {% for d in data %}
-              <table>
+              <table class="main">
                 <tbody>
                   <tr>
                     <td>{{d[2]}}</td>
-                    <td>{{d[0]}}</td>
+                    <td><a href="https://www.winemag.com/?s={{d[0]}}" target="_blank">{{d[0]}}</a></td>
+                    <td>{{d[5]}}</td>
+                    <td>{{d[4]}}</td>
                     <td>${{d[1]}}</td>
-                    <td>{{d[3]}}</td>
-                    <td>Ratings</td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"><em>{{d[3]}}</em></td>
                   </tr>
                 </tbody>
               </table>

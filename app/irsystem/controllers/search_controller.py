@@ -13,17 +13,14 @@ from nltk.util import ngrams
 import re
 from numpy import linalg as la
 
-# relative path stuff
-import os
-dirname = os.path.dirname(__file__)
-master_data_path = os.path.join(dirname, '..', '..', 'data', 'master_data_lean.pkl')
-vin_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'vin_tfidf.npy')
-word_to_index_path = os.path.join(dirname, '..', '..', 'data', 'word_to_index.npy')
-variety_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'variety_tfidf.npy')
-
 project_name = "S"
 net_id = "...."
-
+import os
+dirname = os.path.dirname(__file__)
+master_data_path = os.path.join(dirname,'..', '..', 'data', 'master_data_lean.pkl')
+vin_tfidf_path = os.path.join(dirname,'..', '..', 'data', 'vin_tfidf.npy')
+word_to_index_path = os.path.join(dirname,'..', '..', 'data', 'word_to_index.npy')
+variety_tfidf_path = os.path.join(dirname,'..', '..', 'data', 'variety_tfidf.npy')
 @irsystem.route('/', methods=['GET'])
 def search():
 
@@ -41,13 +38,11 @@ def search():
 	#print(WineType)
 	flag = []
 	flag3 =[]
-	if not MaxPrice:
-		MaxPrice = 3300
+
 	if not color:
 		color = None
 	#else:
-	if not rating:
-		rating = 0
+
 
 	if not varietyfilter:
 		varietyfilter = 0
@@ -55,7 +50,7 @@ def search():
 		Country = None
 	price = 0
 	sim = 0
-	if not WineType and not Flavor_Additional and not Variety:
+	if not WineType and not Flavor_Additional and not Variety and not color and not Country and not MaxPrice and not rating:
 		flag3 = [1]
 		data = []
 		output_message = "Please enter a flavor"
@@ -69,12 +64,21 @@ def search():
 		if not Variety:
 			Variety = ""
 		#print(WineType)
+		if not rating:
+			rating = 0
 
-	## comment to update code
+		if not MaxPrice:
+			MaxPrice = 3300
 		master_data = pd.read_pickle(master_data_path)
 		vin_tfidf = np.load(vin_tfidf_path ).item()
 		word_to_index = np.load(word_to_index_path).item()
 		variety_tfidf = np.load(variety_tfidf_path).item()
+
+	## comment to update code
+	#	master_data = pd.read_pickle("D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\master_data_lean.pkl")
+	#	vin_tfidf = np.load('D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\vin_tdidf.npy').item()
+	#	word_to_index = np.load('D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\word_to_index.npy').item()
+	#	variety_tfidf = np.load('D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\variety_tfidf.npy').item()
 
 
 		def query_vec(s):
@@ -140,22 +144,39 @@ def search():
 
 					recco_mat.sort_values("sims", axis = 0, ascending = False,
 								 inplace = True)
+					if np.sum(query_vec) == 0:
+						recco_mat.sort_values("points", axis = 0, ascending = False,inplace = True)
 
 					return recco_mat[0:10]
 
 	#	def WineCloud (df):
+		output_message  =  "Showing Wine"
+		if color is not None:
+					output_message = output_message + " with " + color + " Color" + " "
+		if WineType != " ":
+			output_message = output_message + " with " + WineType + " flavour "
+		if Variety != "":
+			output_message = output_message + " like " + Variety
+		if Country is not None:
+			output_message = output_message + " from " + Country
+		if rating != 0 :
+			output_message = output_message + " with rating greater than " + str(rating)
+		if MaxPrice!= 3300:
+			output_message =  output_message + " with price less than $" + MaxPrice
 
 
-		if color  ==None:
-			output_message = "Showing Results for "+ WineType + " Wine"
-		else:
-			output_message = "Showing Results for " + color + " " + WineType + " Wine"
-		if WineType == " " :
-			output_message = "Showing Results for " + Variety + " Wine"
-		elif color is not None and Variety is not None:
-			output_message = "Showing Results for " + color + " " + Variety + " "+ WineType + " Wine"
-		elif Variety is not None:
-			output_message = "Showing Results for "  + Variety + " "+ WineType + " Wine"
+
+
+		#if color  ==None:
+		#	output_message = "Showing Results for "+ WineType + " Wine"
+		#else:
+		#	output_message = "Showing Results for " + color + " " + WineType + " Wine"
+		#if WineType == " " :
+		#	output_message = "Showing Results for " + Variety + " Wine"
+		#elif color is not None and Variety is not None:
+		#	output_message = "Showing Results for " + color + " " + Variety + " "+ WineType + " Wine"
+		#elif Variety is not None:
+		#	output_message = "Showing Results for "  + Variety + " "+ WineType + " Wine"
 
 		#print ("WineType is " + WineType)
 
@@ -173,7 +194,7 @@ def search():
 
 		shortlist = shortlist_vin(query, color = color, price_max = int(MaxPrice), rating = int(rating),variety = Variety,variety_flag = int(varietyfilter), country = Country)
 
-		data= shortlist[['title','price','sims','description','points','country']][:10]
+		data= shortlist[['title','price','sims','description','points','country','variety']][:10]
 		data['sims'] = data['sims'].apply(lambda x:round(x,3))
 
 
