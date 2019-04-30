@@ -10,15 +10,16 @@ padding: 20px 0;
 text-align:center;
 }
 
+/*
 table {
   table-layout: fixed;
   width: 10% 50% 20% 10% 10%;
-  /*width: 1px 50px 50px 50px 50px;*/
   padding: 25px 25px;
 }
+*/
 
 body {
-padding-top: 8%;
+padding-top: 10%;
 padding-bottom: 15px;
 }
 
@@ -60,6 +61,7 @@ border: none
 }
 
 table {
+  table-layout: fixed;
   height: 10%;
   left: 10%;
   margin: 20px auto;
@@ -67,6 +69,7 @@ table {
   position: static;
   width: 70%;
 }
+
 
 thead th {
   background: #88CCF1;

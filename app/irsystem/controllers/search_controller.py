@@ -20,6 +20,8 @@ master_data_path = os.path.join(dirname, '..', '..', 'data', 'master_data_lean.p
 vin_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'vin_tfidf.npy')
 word_to_index_path = os.path.join(dirname, '..', '..', 'data', 'word_to_index.npy')
 variety_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'variety_tfidf.npy')
+var_values_path = os.path.join(dirname, '..', '..', 'data', 'var_values.npy')
+var_indices_path = os.path.join(dirname, '..', '..', 'data', 'var_indices.npy')
 
 project_name = "S"
 net_id = "...."
@@ -76,6 +78,8 @@ def search():
 		vin_tfidf = np.load(vin_tfidf_path ).item()
 		word_to_index = np.load(word_to_index_path).item()
 		variety_tfidf = np.load(variety_tfidf_path).item()
+		var_indices = np.load(var_indices_path).item()
+		var_values = np.load(var_values_path).item()
 
 	## comment to update code
 	#	master_data = pd.read_pickle("D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\master_data_lean.pkl")
@@ -190,10 +194,13 @@ def search():
 		#print(varietyfilter)
 		#print(Variety)
 
-		if Variety in list(variety_tfidf.keys()):
-			query = query_vec(WineType) + variety_tfidf[Variety].toarray()
-		else:
-			query = query_vec(WineType)
+		vlist = list(variety_tfidf.keys())
+		a = query_vec(WineType)
+		init_query = query_vec(WineType).ravel()
+		if Variety in vlist:
+		    for i,v in enumerate(var_indices[Variety]):
+		        init_query[v] = init_query[v] + var_values[Variety][i]
+		query = np.reshape(init_query, a.shape)
 
 		shortlist = shortlist_vin(query, color = color, price_max = int(MaxPrice), rating = int(rating),variety = Variety,variety_flag = int(varietyfilter), country = Country)
 
