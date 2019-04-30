@@ -13,14 +13,17 @@ from nltk.util import ngrams
 import re
 from numpy import linalg as la
 
-project_name = "S"
-net_id = "...."
+# relative path stuff
 import os
 dirname = os.path.dirname(__file__)
-master_data_path = os.path.join(dirname,'..', '..', 'data', 'master_data_lean.pkl')
-vin_tfidf_path = os.path.join(dirname,'..', '..', 'data', 'vin_tfidf.npy')
-word_to_index_path = os.path.join(dirname,'..', '..', 'data', 'word_to_index.npy')
-variety_tfidf_path = os.path.join(dirname,'..', '..', 'data', 'variety_tfidf.npy')
+master_data_path = os.path.join(dirname, '..', '..', 'data', 'master_data_lean.pkl')
+vin_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'vin_tfidf.npy')
+word_to_index_path = os.path.join(dirname, '..', '..', 'data', 'word_to_index.npy')
+variety_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'variety_tfidf.npy')
+
+project_name = "S"
+net_id = "...."
+
 @irsystem.route('/', methods=['GET'])
 def search():
 
