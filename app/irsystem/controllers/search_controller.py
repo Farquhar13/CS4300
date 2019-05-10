@@ -22,7 +22,6 @@ word_to_index_path = os.path.join(dirname, '..', '..', 'data', 'word_to_index.np
 variety_tfidf_path = os.path.join(dirname, '..', '..', 'data', 'variety_tfidf.npy')
 var_values_path = os.path.join(dirname, '..', '..', 'data', 'var_values.npy')
 var_indices_path = os.path.join(dirname, '..', '..', 'data', 'var_indices.npy')
-wine_names_path = os.path.join(dirname, '..', '..', 'data','wine_names.npy')
 
 project_name = "S"
 net_id = "...."
@@ -40,7 +39,6 @@ def search():
 	rating = request.args.get('rating')
 	varietyfilter = request.args.get('varietyfilter')
 	Country = request.args.get('Country')
-	wine_name = request.args.get('WineName')
 	#print(MinPrice)
 	#print(WineType)
 	flag = []
@@ -57,7 +55,7 @@ def search():
 		Country = None
 	price = 0
 	sim = 0
-	if not WineType and not Flavor_Additional and not Variety and not color and not Country and not MaxPrice and not rating and not wine_name:
+	if not WineType and not Flavor_Additional and not Variety and not color and not Country and not MaxPrice and not rating:
 		flag3 = [1]
 		data = []
 		output_message = "Please enter a flavor"
@@ -82,9 +80,16 @@ def search():
 		variety_tfidf = np.load(variety_tfidf_path).item()
 		var_indices = np.load(var_indices_path).item()
 		var_values = np.load(var_values_path).item()
-		wine_names = np.load(wine_names_path).item()
+
+	## comment to update code
+	#	master_data = pd.read_pickle("D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\master_data_lean.pkl")
+	#	vin_tfidf = np.load('D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\vin_tdidf.npy').item()
+	#	word_to_index = np.load('D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\word_to_index.npy').item()
+	#	variety_tfidf = np.load('D:\\Cornell_Acads\\Second_Semester\\CS4300_Flask_template-master\\app\\irsystem\\controllers\\variety_tfidf.npy').item()
+
 
 		def query_vec(s):
+
 			s = s.lower()
 			s = re.sub(r'[^a-zA-Z0-9\s]', ' ', s)
 			tokens = [token for token in s.split(" ") if token != ""]
@@ -98,6 +103,7 @@ def search():
 
 
 		def similar_vin(query_vec, vin_tfidf):
+
 			subset = []
 			for i,v in enumerate(query_vec[0,:]):
 				if v != 0:
@@ -116,45 +122,39 @@ def search():
 
 
 		def shortlist_vin(query_vec, color = None, price_min = None, price_max = None, rating = None,
-                  variety = None, variety_flag = 0, country = None, wine_name = None):
-			sim_mat = similar_vin(query_vec,vin_tfidf)
-			recco_mat = pd.merge(sim_mat, master_data, on='index', how='left')
+                  variety = None, variety_flag =0, country = None):
+					sim_mat = similar_vin(query_vec,vin_tfidf)
+					recco_mat = pd.merge(sim_mat, master_data, on='index', how='left')
 
-			if color != None:
-				recco_mat =  recco_mat[recco_mat.Color == color]
+					if color != None:
+						recco_mat =  recco_mat[recco_mat.Color == color]
 
-			if price_max != None:
-				recco_mat = recco_mat[recco_mat.price < price_max]
+					if price_max != None:
+						recco_mat = recco_mat[recco_mat.price < price_max]
 
-			if rating != None:
-				recco_mat = recco_mat[recco_mat.points > rating]
+					if rating != None:
+						   recco_mat = recco_mat[recco_mat.points > rating]
 
-			if variety_flag == 1 and (variety in vlist):
-				recco_mat = recco_mat[recco_mat['variety']==variety]
+					if variety_flag == 1 and (variety in list(variety_tfidf.keys())):
+						 recco_mat = recco_mat[recco_mat['variety']==variety]
 
-			if country in ['Spain', 'US', 'New Zealand', 'France', 'Israel', 'Australia',
-			   'Portugal', 'Argentina', 'South Africa', 'Italy', 'Germany',
-			   'Greece', 'Moldova', 'Croatia', 'Serbia', 'Chile', 'Austria',
-			   'Georgia', 'Uruguay', 'Hungary', 'Ukraine', 'Brazil',
-			   'Slovenia', 'Canada', 'Morocco', 'Bulgaria', 'England',
-			   'Macedonia', 'Romania', 'Mexico', 'Turkey', 'China', 'Cyprus',
-			   'Slovakia', 'Lebanon', 'Switzerland', 'Luxembourg','Peru',
-			   'Egypt', 'Czech Republic', 'India', 'Armenia',
-			   'Bosnia and Herzegovina']:
-				recco_mat = recco_mat[recco_mat['country']==country]
+					if country in ['Spain', 'US', 'New Zealand', 'France', 'Israel', 'Australia',
+					   'Portugal', 'Argentina', 'South Africa', 'Italy', 'Germany',
+					   'Greece', 'Moldova', 'Croatia', 'Serbia', 'Chile', 'Austria',
+					   'Georgia', 'Uruguay', 'Hungary', 'Ukraine', 'Brazil',
+					   'Slovenia', 'Canada', 'Morocco', 'Bulgaria', 'England',
+					   'Macedonia', 'Romania', 'Mexico', 'Turkey', 'China', 'Cyprus',
+					   'Slovakia', 'Lebanon', 'Switzerland', 'Luxembourg','Peru',
+					   'Egypt', 'Czech Republic', 'India', 'Armenia',
+					   'Bosnia and Herzegovina']:
+						recco_mat = recco_mat[recco_mat['country']==country]
 
-			recco_mat.sort_values("sims", axis = 0, ascending = False,
-						 inplace = True)
+					recco_mat.sort_values("sims", axis = 0, ascending = False,
+								 inplace = True)
+					if np.sum(query_vec) == 0:
+						recco_mat.sort_values("points", axis = 0, ascending = False,inplace = True)
 
-			if np.sum(query_vec) == 0:
-				recco_mat.sort_values("points", axis = 0, ascending = False,
-						 inplace = True)
-			if wine_name != None:
-				return recco_mat[1:11]
-			else:
-				return recco_mat[0:10]
-
-
+					return recco_mat[0:10]
 
 	#	def WineCloud (df):
 		output_message  =  "Showing Wine"
@@ -170,9 +170,9 @@ def search():
 			output_message = output_message + " with rating greater than " + str(rating)
 		if MaxPrice!= 3300:
 			output_message =  output_message + " with price less than $" + MaxPrice
-		if wine_name!= None:
-			output_message = output_message + " similar to " + wine_name
-		output_message = [output_message, str(list(master_data.loc[master_data['title'] == wine_name]['description'])).strip('[]')] 
+
+
+
 
 		#if color  ==None:
 		#	output_message = "Showing Results for "+ WineType + " Wine"
@@ -196,24 +196,13 @@ def search():
 
 		vlist = list(variety_tfidf.keys())
 		a = query_vec(WineType)
-		query = query_vec(WineType)
+		init_query = query_vec(WineType).ravel()
 		if Variety in vlist:
-			init_query = query_vec(WineType).ravel()
-			for i,v in enumerate(var_indices[Variety]):
-				init_query[v] = init_query[v] + var_values[Variety][i]
-			query = np.reshape(init_query, a.shape)
+		    for i,v in enumerate(var_indices[Variety]):
+		        init_query[v] = init_query[v] + var_values[Variety][i]
+		query = np.reshape(init_query, a.shape)
 
-		if wine_name != None:
-		    w_id = wine_names[wine_name]
-		    w_tfidf = vin_tfidf[w_id].toarray()
-		    if Variety in vlist:
-		        query = query + w_tfidf
-		    elif WineType == None:
-		        query = w_tfidf
-		    else:
-		        query = a + w_tfidf
-
-		shortlist = shortlist_vin(query, color = color, price_max = int(MaxPrice), rating = int(rating),variety = Variety,variety_flag = int(varietyfilter), country = Country,wine_name = wine_name)
+		shortlist = shortlist_vin(query, color = color, price_max = int(MaxPrice), rating = int(rating),variety = Variety,variety_flag = int(varietyfilter), country = Country)
 
 		data= shortlist[['title','price','sims','description','points','country','variety']][:10]
 		data['sims'] = data['sims'].apply(lambda x:round(x,3))
@@ -228,4 +217,5 @@ def search():
 		if (len(data)== 0):
 			flag = [1]
 
-	return render_template('search.html', name=project_name, netid=net_id, output_message=list(output_message), data = data, flag = flag,flag3 = flag3)
+
+	return render_template('search.html', name=project_name, netid=net_id, output_message=output_message, data = data, flag = flag,flag3 = flag3)
